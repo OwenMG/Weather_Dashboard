@@ -20,8 +20,8 @@ var generateHistoryButton = function() {
     console.log(newHistoric)
     newHistoric.classList.add("btn");
     newHistoric.classList.add("historic");
-    newHistoric.setAttribute("data-lat", localStorage.getItem("lat"));
-    newHistoric.setAttribute("data-lon", localStorage.getItem("lon"));
+    newHistoric.setAttribute("data-lat", localStorage.getItem("cityLat"));
+    newHistoric.setAttribute("data-lon", localStorage.getItem("cityLon"));
     newHistoric.textContent = localStorage.getItem("cityName");
     historyEl.appendChild(newHistoric);
 };
@@ -46,6 +46,7 @@ var getWeather = function(cityInput) {
                     localStorage.setItem("cityLon", cityCoords.lon);
                     localStorage.setItem("cityName", cityCoords.name);
                     getWeatherData();
+                    generateHistoryButton();
                 })
             }
         })
@@ -68,7 +69,6 @@ var getWeatherData = function() {
                 response.json().then(function(data) {
                     console.log(data);
                     fillWeatherEl(data);
-                    generateHistoryButton();
                 })
             }
         })
@@ -88,10 +88,10 @@ searchFormEl.addEventListener("submit", function(event) {
     getWeather(userInput);
 
 })
-// historyEl.addEventListener("click", function(event){
-//     var clickedHistoric = event.target;
-//     console.log("historic target:" +clickedHistoric)
-//     localStorage.setItem("lat", clickedHistoric.getAttribute("data-lat"));
-//     localStorage.setItem("lon", clickedHistoric.getAttribute("data-lon"));
-//     getWeatherData;
-// })
+historyEl.addEventListener("click", function(event){
+    var clickedHistoric = event.target;
+    console.log("historic target:" +clickedHistoric)
+    localStorage.setItem("cityLat", clickedHistoric.getAttribute("data-lat"));
+    localStorage.setItem("cityLon", clickedHistoric.getAttribute("data-lon"));
+    getWeatherData();
+})

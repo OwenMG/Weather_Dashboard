@@ -6,6 +6,10 @@
     --orangered: #fe5f55;
 }
 
+.headboard {
+    background-color: var(--powderblue);
+}
+
 #weatherstats {
     background-color: var(--orangered);
     border: 3px solid black;
@@ -19,10 +23,10 @@
     margin: auto auto 3px
 }
 
-.headboard {
-    background-color: var(--powderblue);
+#history {
+    display: flex;
+    flex-direction: column-reverse;
 }
-
 .historic {
     border: 2px solid var(--cadetblue);
     background-color: var(--deepspace);
