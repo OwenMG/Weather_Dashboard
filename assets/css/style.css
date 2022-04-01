@@ -1,0 +1,33 @@
+:root {
+    --powderblue: #B8D8D8;
+    --cadetblue: #7a9e9f;
+    --deepspace: #4f6367;
+    --beige: #eef5db;
+    --orangered: #fe5f55;
+}
+
+#weatherstats {
+    background-color: var(--orangered);
+    border: 3px solid black;
+    height: 300px;
+}
+
+#searchbutton {
+    width: 100%;
+}
+.form-control {
+    margin: auto auto 3px
+}
+
+.headboard {
+    background-color: var(--powderblue);
+}
+
+.historic {
+    border: 2px solid var(--cadetblue);
+    background-color: var(--deepspace);
+    margin: 5px auto;
+    font-weight: bold;
+    color: white;
+    width: 100%;
+}
