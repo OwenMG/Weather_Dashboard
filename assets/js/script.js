@@ -46,27 +46,39 @@ var generateForcast = function(weather) {
     var castdays=[forecast1,forecast2,forecast3,forecast4,forecast5]
     console.log("function is functioning")
     for (i=0; i<castdays.length; i++) {
-        var dateEl = document.createElement("p");
-        var iconEl = document.createElement("p");
-        var tempEl = document.createElement("p");
-        var windEl = document.createElement("p");
-        var humidEl = document.createElement("p");
+        var dateEl = castdays[i].children[0];
+        var iconEl = castdays[i].children[1];
+        var tempEl = castdays[i].children[2];
+        var windEl = castdays[i].children[3];
+        var humidEl = castdays[i].children[4];
 
         dateEl.textContent= moment().add(i+1, "days").format("M/D/YY");
         dateEl.classList.add("bold");
         dateEl.classList.add("dark");
-        iconEl.textContent =""
         tempEl.textContent = "Temp: "+weather.daily[i].temp.day+"°F";
         windEl.textContent = "Wind: "+weather.daily[i].wind_speed+" MPH";
         humidEl.textContent = "Humidity: "+weather.daily[i].humidity+"%";
 
-        console.log("loop is functioning")
-        castdays[i].appendChild(dateEl);
-        castdays[i].appendChild(iconEl);
-        castdays[i].appendChild(tempEl);
-        castdays[i].appendChild(windEl);
-        castdays[i].appendChild(humidEl);
         castdays[i].classList.add("forecastcard")
+        console.log(weather.daily[i].weather[0].main);
+        if (weather.daily[i].weather[0].main == "Rain") {
+            iconEl.classList.add("fa-cloud-showers-heavy");
+        }
+        if (weather.daily[i].weather[0].main == "Clear") {
+            iconEl.classList.add("fa-sun");
+        }
+        if (weather.daily[i].weather[0].main == "Clouds") {
+            iconEl.classList.add("fa-cloud-sun");
+        }
+        if (weather.daily[i].weather[0].main == "Snow") {
+            iconEl.classList.add("fa-snowflake");
+        }
+        if (weather.daily[i].weather[0].main == "Drizzle") {
+            iconEl.classList.add("fa-cloud-showers-heavy");
+        }
+        if (weather.daily[i].weather[0].main == "Thunderstorm") {
+            iconEl.classList.add("fa-bolt");
+        }
     }
 }
 
