@@ -16,6 +16,8 @@ var forecast4=document.getElementById("day4");
 var forecast5=document.getElementById("day5");
 
 var now=moment().format("M/D/YY");
+var forecastGenNeeded = true;
+
 
 cityNameEl.textcontent=now;
 console.log(now);
@@ -31,25 +33,40 @@ var fillWeatherEl = function(weather) {
     if(weather.current.uvi<3){
         UVIndex.classList.add("favorable");
     }
-    else if(weather.current.uvi>6) {
+    else if(weather.current.uvi<6) {
         UVIndex.classList.add("moderate");
     }
     else {
         UVIndex.classList.add("severe");
     }
+    
+    generateForcast(weather);
 };
-var generateForcast(weather) {
+var generateForcast = function(weather) {
     var castdays=[forecast1,forecast2,forecast3,forecast4,forecast5]
-    for (i=0; i<castdays.length, i++) {
+    console.log("function is functioning")
+    for (i=0; i<castdays.length; i++) {
         var dateEl = document.createElement("p");
         var iconEl = document.createElement("p");
         var tempEl = document.createElement("p");
         var windEl = document.createElement("p");
-        var humidEl=document.createElement("p");
+        var humidEl = document.createElement("p");
 
-        dateEl.textContent= now.add((i+1), "days").calendar;
-        iconEl.textContent ="icon idk"
+        dateEl.textContent= moment().add(i+1, "days").format("M/D/YY");
+        dateEl.classList.add("bold");
+        dateEl.classList.add("dark");
+        iconEl.textContent =""
         tempEl.textContent = "Temp: "+weather.daily[i].temp.day+"°F";
+        windEl.textContent = "Wind: "+weather.daily[i].wind_speed+" MPH";
+        humidEl.textContent = "Humidity: "+weather.daily[i].humidity+"%";
+
+        console.log("loop is functioning")
+        castdays[i].appendChild(dateEl);
+        castdays[i].appendChild(iconEl);
+        castdays[i].appendChild(tempEl);
+        castdays[i].appendChild(windEl);
+        castdays[i].appendChild(humidEl);
+        castdays[i].classList.add("forecastcard")
     }
 }
 
