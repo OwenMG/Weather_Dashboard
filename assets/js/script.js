@@ -83,7 +83,7 @@ var generateHistoryButton = function() {
 };
 
 var getWeather = function(cityInput) {
-    var geocodeAPIUrl = "http://api.openweathermap.org/geo/1.0/direct?q="+cityInput+"&appid=df178667ace9a3adf43127dbd063444a";
+    var geocodeAPIUrl = "https://api.openweathermap.org/geo/1.0/direct?q="+cityInput+"&appid=df178667ace9a3adf43127dbd063444a";
 
     fetch(geocodeAPIUrl)
         
