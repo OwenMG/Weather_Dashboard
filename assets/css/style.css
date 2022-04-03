@@ -25,6 +25,10 @@ body{
     align-items: center;
     border-radius: 10px;
 }
+
+.icon{
+    font-size: 36px;
+}
 .forecastcard {
     display: flex;
     flex-direction: column;

@@ -6,4 +6,4 @@ I created and tested API keys, built an html page to house the data, and then cr
 
 I added the ability to see the current weather conditions for the chosen city, as well as a 5 day forecast.
 
-However, I failed to build the forecast in a way conducive to using the history buttons, and as a result trying to search for another city after the first destroys the forecast section. I will be resubmitting this assignment once this issue is fixed, as well as having added icons.
+Finally, I added font awesome for forecast icon functionality and did some API call bug fixing.
