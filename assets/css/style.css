@@ -11,9 +11,41 @@
 }
 
 #weatherstats {
-    background-color: var(--orangered);
+    background-color: var(--deepspace);
     border: 3px solid black;
     height: 300px;
+}
+
+#forecastarea {
+    background-color: var(--beige);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.forecastcard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px dashed var(--orangered);
+    border-radius: 10px;
+    padding: 5px;
+    height: 300px;
+}
+
+.bold {
+    font-size: 180%;
+    font-weight: bold;
+    color: white;
+}
+
+.dark{
+    color: black;
+}
+.currentdata {
+    padding: 4px;
+    background-color: var(--beige);
+    border-radius: 10px;
+    
 }
 
 #searchbutton {
@@ -28,10 +60,24 @@
     flex-direction: column-reverse;
 }
 .historic {
-    border: 2px solid var(--cadetblue);
-    background-color: var(--deepspace);
+    border: 2px solid var(--powderblue);
+    background-color: var(--cadetblue);
     margin: 5px auto;
     font-weight: bold;
     color: white;
     width: 100%;
+}
+.favorable {
+    background-color: green;
+}
+.moderate{
+    background-color: yellow;
+}
+.severe {
+    background-color: red;
+}
+
+#uvindex{ 
+    padding: 2px;
+    border-radius: 5px;
 }

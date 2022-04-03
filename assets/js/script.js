@@ -5,14 +5,53 @@ var weatherStatsEl = document.getElementById("weatherstats");
 var searchFormEl=document.getElementById("searchform");
 var searchBarEl=document.getElementById("searchbar");
 var historyEl=document.getElementById("history");
+var currentTempEl=document.getElementById("currenttemp");
+var currentWindEl=document.getElementById("currentwind");
+var currentHumidityEl=document.getElementById("currenthumidity");
+var UVIndex=document.getElementById("uvindex");
+var forecast1=document.getElementById("day1");
+var forecast2=document.getElementById("day2");
+var forecast3=document.getElementById("day3");
+var forecast4=document.getElementById("day4");
+var forecast5=document.getElementById("day5");
 
-cityNameEl.textContent = "Hello";
+var now=moment().format("M/D/YY");
 
+cityNameEl.textcontent=now;
+console.log(now);
 var fillWeatherEl = function(weather) {
-    var weatherdata = document.createElement("p");
-    weatherdata.textContent = weather.current.clouds;
-    weatherStatsEl.appendChild(weatherdata);
+    // fill current weather data
+    cityNameEl.textContent = localStorage.getItem("cityName")+" "+now;
+    currentTempEl.textContent = "Temp: "+weather.current.temp+"°F";
+    currentWindEl.textContent = "Wind: "+weather.current.wind_speed+" MPH";
+    currentHumidityEl.textContent = "Humidity: "+weather.current.humidity+"%";
+    UVIndex.textContent=weather.current.uvi;
+
+    // color uv index
+    if(weather.current.uvi<3){
+        UVIndex.classList.add("favorable");
+    }
+    else if(weather.current.uvi>6) {
+        UVIndex.classList.add("moderate");
+    }
+    else {
+        UVIndex.classList.add("severe");
+    }
 };
+var generateForcast(weather) {
+    var castdays=[forecast1,forecast2,forecast3,forecast4,forecast5]
+    for (i=0; i<castdays.length, i++) {
+        var dateEl = document.createElement("p");
+        var iconEl = document.createElement("p");
+        var tempEl = document.createElement("p");
+        var windEl = document.createElement("p");
+        var humidEl=document.createElement("p");
+
+        dateEl.textContent= now.add((i+1), "days").calendar;
+        iconEl.textContent ="icon idk"
+        tempEl.textContent = "Temp: "+weather.daily[i].temp.day+"°F";
+    }
+}
 
 
 var generateHistoryButton = function() {
@@ -60,7 +99,7 @@ var getWeatherData = function() {
         lat: localStorage.getItem("cityLat"),
         lon: localStorage.getItem("cityLon"),
     }
-    var weatherAPIUrl = "https://api.openweathermap.org/data/2.5/onecall?lat="+cityCoords.lat+"&lon="+cityCoords.lon+"&appid=df178667ace9a3adf43127dbd063444a";
+    var weatherAPIUrl = "https://api.openweathermap.org/data/2.5/onecall?lat="+cityCoords.lat+"&lon="+cityCoords.lon+"&units=imperial&appid=df178667ace9a3adf43127dbd063444a";
 
     fetch(weatherAPIUrl)
         .then(function(response) {
@@ -86,6 +125,7 @@ searchFormEl.addEventListener("submit", function(event) {
     console.log("input: " + userInput);
 
     getWeather(userInput);
+    searchBarEl.value="";
 
 })
 historyEl.addEventListener("click", function(event){
